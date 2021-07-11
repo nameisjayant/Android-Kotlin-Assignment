@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingwithjks.assignment.data.adapter.MedicineAdapter
 import com.codingwithjks.assignment.databinding.FragmentHomeBinding
 import com.codingwithjks.assignment.ui.viewmodel.MainViewModel
-import com.codingwithjks.assignment.utils.Listener
-import com.codingwithjks.assignment.utils.States
-import com.codingwithjks.assignment.utils.showMsg
+import com.codingwithjks.assignment.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -36,7 +34,7 @@ class HomeFragment : Fragment(),Listener {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         val username = arguments?.getString("username")
         binding.apply {
-            greet.text = "Good Morning, $username"
+            greet.text = username?.let { currentTime(it) }
         }
         initRecyclerview()
         insertIntoRoom()
